@@ -1,0 +1,25 @@
+
+
+
+
+
+
+
+def parse(filenames):
+    '''
+    Given a list of experiment result filenames, parse each file and return
+    a dictionary with accession number as key and list of number as value.
+    '''
+    
+    def parse_line(line):
+        '''
+        Given a single line of from the file, this function returns the gene
+        accssion and a list of float numbers
+        '''
+        fields = line.rstrip().split("\t")
+        try:
+            acc = fields[0]
+            l = [ float(num) for num in fields[1:] ]
+            return acc, l
+        except IndexError:
+            print("[Warning]: Line without accession/value found: {line}")
